@@ -4,9 +4,7 @@ import com.gozzerks.tasks.domain.dto.TaskListDTO;
 import com.gozzerks.tasks.domain.entities.TaskList;
 import com.gozzerks.tasks.mappers.TaskListMapper;
 import com.gozzerks.tasks.services.TaskListService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +25,15 @@ public class TaskListController {
                 .stream()
                 .map(taskListMapper::toDTO)
                 .toList();
+    }
+
+    @PostMapping
+    public TaskListDTO createTaskList(@RequestBody TaskListDTO taskListDTO) {
+
+        TaskList createdTaskList = taskListService.createTaskList(
+                taskListMapper.fromDTO(taskListDTO)
+
+        );
+        return taskListMapper.toDTO(createdTaskList);
     }
 }
