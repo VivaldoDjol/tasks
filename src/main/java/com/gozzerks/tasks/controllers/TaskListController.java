@@ -40,8 +40,20 @@ public class TaskListController {
     }
 
     @GetMapping(path = "/{task_list_id}")
-    public Optional<TaskListDTO> getTaskList(@PathVariable("task_list_id") UUID task_list_id) {
-        return taskListService.getTaskList(task_list_id)
+    public Optional<TaskListDTO> getTaskList(@PathVariable("task_list_id") UUID taskListId) {
+        return taskListService.getTaskList(taskListId)
                 .map(taskListMapper::toDTO);
+    }
+
+    @PutMapping(path = "/{task_list_id")
+    public TaskListDTO updateTaskList(
+            @PathVariable("task_list_id") UUID taskListId,
+            @RequestBody TaskListDTO taskListDTO
+    ) {
+        TaskList updatedTaskList = taskListService.updateTaskList(
+                taskListId,
+                taskListMapper.fromDTO(taskListDTO)
+        );
+        return taskListMapper.toDTO(updatedTaskList);
     }
 }
