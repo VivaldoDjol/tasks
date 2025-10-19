@@ -7,6 +7,7 @@ import com.gozzerks.tasks.services.TaskService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -30,11 +31,21 @@ public class TasksController {
     }
 
     @PostMapping
-    public TaskDTO createTask(@PathVariable("task_list_id") UUID taskListId, @RequestBody TaskDTO taskDTO) {
+    public TaskDTO createTask(@PathVariable("task_list_id") UUID taskListId,
+                              @RequestBody TaskDTO taskDTO
+    ) {
         Task createdTask = taskService.createTask(
                 taskListId,
                 taskMapper.fromDTO(taskDTO)
         );
         return taskMapper.toDTO(createdTask);
+    }
+
+    @GetMapping(path = "/{task_id}")
+    public Optional<TaskDTO> getTask(
+            @PathVariable("task_list_id") UUID taskListId,
+            @PathVariable("task_id") UUID taskId
+    ) {
+        return taskService.getTask(taskListId, taskId).map(taskMapper::toDTO);
     }
 }
