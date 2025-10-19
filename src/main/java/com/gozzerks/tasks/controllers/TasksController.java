@@ -1,12 +1,10 @@
 package com.gozzerks.tasks.controllers;
 
 import com.gozzerks.tasks.domain.dto.TaskDTO;
+import com.gozzerks.tasks.domain.entities.Task;
 import com.gozzerks.tasks.mappers.TaskMapper;
 import com.gozzerks.tasks.services.TaskService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -29,5 +27,14 @@ public class TasksController {
                 .stream()
                 .map(taskMapper::toDTO)
                 .toList();
+    }
+
+    @PostMapping
+    public TaskDTO createTask(@PathVariable("task_list_id") UUID taskListId, @RequestBody TaskDTO taskDTO) {
+        Task createdTask = taskService.createTask(
+                taskListId,
+                taskMapper.fromDTO(taskDTO)
+        );
+        return taskMapper.toDTO(createdTask);
     }
 }

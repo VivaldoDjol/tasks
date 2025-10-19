@@ -7,5 +7,6 @@ import java.util.UUID;
 
 public interface TaskService {
     List<Task> listTasks(UUID taskListId);
+    Task createTask(UUID taskListId, Task task);
 
 }
