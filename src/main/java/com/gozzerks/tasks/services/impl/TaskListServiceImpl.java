@@ -3,6 +3,7 @@ package com.gozzerks.tasks.services.impl;
 import com.gozzerks.tasks.domain.entities.TaskList;
 import com.gozzerks.tasks.repositories.TaskListRepository;
 import com.gozzerks.tasks.services.TaskListService;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -47,6 +48,7 @@ public class TaskListServiceImpl implements TaskListService {
     public Optional<TaskList> getTaskList(UUID id) {
         return taskListRepository.findById(id);
     }
+    @Transactional
     @Override
     public TaskList updateTaskList(UUID taskListId, TaskList taskList) {
         if (null == taskList.getId()) {
