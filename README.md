@@ -1,114 +1,416 @@
-# TaskFlow – Task Management System (Java/Spring Boot + React)
+# TaskFlow - Full-Stack Task Management Application
 
-A full-stack task management application built with Java 17, Spring Boot 3, React, and PostgreSQL.
-🚀 Features
+A task management application showcasing backend development expertise with Spring Boot, built as part of my continuous learning journey.
 
-    ✅ Task and Task List Management – Create, read, update, and delete tasks organized in lists
-    ✅ Progress Tracking – Visual progress indicators for task completion
-    ✅ Priority & Status Management – Set task priorities (HIGH/MEDIUM/LOW) and track status (OPEN/CLOSED)
-    ✅ PostgreSQL persistence – Uses a production-grade relational database for all task data
-    ✅ Full Test Coverage – Unit + Integration tests for backend services
-    ✅ Docker-First – One-command setup with PostgreSQL
-    ✅ Comprehensive API Documentation – Interactive Swagger UI with detailed examples
-    ✅ Production-ready Observability – Health checks, metrics, and logging
-    ✅ Modern React Frontend – Built with TypeScript, Vite, and NextUI components
+## 🎓 Project Context
 
-🛠️ Tech Stack
-Layer 	Technology
-Language 	Java 17, TypeScript
-Backend Framework 	Spring Boot 3.3.5
-Frontend Framework 	React 18, Vite
-Web 	Spring Web, React Router
-Data 	Spring Data JPA, PostgreSQL
-Testing 	JUnit 5, Mockito, AssertJ
-DevOps 	Docker, Docker Compose
-Documentation 	SpringDoc OpenAPI (Swagger)
-Observability 	Spring Boot Actuator
-Build 	Maven, npm
-UI Components 	NextUI, Tailwind CSS
-📚 API Documentation
+This project demonstrates my **backend development skills** with Spring Boot, Java, and RESTful API design. The backend was developed by following best practices tutorials and implementing core features independently. The frontend serves as a functional interface to demonstrate the API capabilities, though my primary expertise lies in backend development.
 
-Interactive API documentation available at:
+**Current Focus**: Backend architecture, API design, database modeling, and server-side logic  
+**Learning Goals**: Expanding frontend proficiency with React and TypeScript
 
-    API Documentation: http://localhost:8080/swagger-ui.html
-    API Docs JSON: http://localhost:8080/v3/api-docs
+## 🚀 Project Overview
 
-Endpoints include:
+TaskFlow is a task management application that enables users to organize their work through task lists and individual tasks. The application features a Spring Boot backend with PostgreSQL persistence and a React frontend interface.
 
-    POST /api/task-lists - Create a new task list
-    GET /api/task-lists - Retrieve all task lists
-    GET /api/task-lists/{id} - Retrieve a specific task list
-    PUT /api/task-lists/{id} - Update a task list
-    DELETE /api/task-lists/{id} - Delete a task list
-    POST /api/task-lists/{listId}/tasks - Create a new task
-    GET /api/task-lists/{listId}/tasks - Retrieve all tasks in a list
-    GET /api/task-lists/{listId}/tasks/{id} - Retrieve a specific task
-    PUT /api/task-lists/{listId}/tasks/{id} - Update a task
-    DELETE /api/task-lists/{listId}/tasks/{id} - Delete a task
-    Actuator endpoints for health and metrics
 
-▶️ Run Locally
+## ✨ Key Features (Backend Implementation)
 
-Start dependencies (PostgreSQL):
+### 🎯 Core Backend Features
+- **RESTful API Design**: Fully functional REST endpoints following industry standards
+- **Task List Management**: Complete CRUD operations with automatic progress calculation
+- **Task Operations**: Nested resource management within task lists
+- **Priority & Status System**: Enum-based task organization (LOW, MEDIUM, HIGH priority)
+- **Database Relationships**: Proper JPA entity relationships and cascade operations
+- **Exception Handling**: Global exception handler with meaningful error responses
+- **Progress Tracking**: Service-layer logic for calculating task completion percentages
 
+### Frontend Features
+- Basic CRUD interface for task and task list management
+- Progress visualization with NextUI components
+- Responsive design with Tailwind CSS
+
+## 🛠️ Technology Stack
+
+### Backend (Primary Focus)
+- **Framework**: Spring Boot 3.5.6
+- **Language**: Java 17
+- **Database**: PostgreSQL (production), H2 (testing)
+- **ORM**: Spring Data JPA / Hibernate
+- **Build Tool**: Maven
+- **Containerization**: Docker & Docker Compose
+- **Testing**: JUnit, Spring Boot Test
+
+### Frontend (Supporting Interface)
+- **Framework**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **UI Library**: NextUI
+- **Styling**: Tailwind CSS
+- **Routing**: React Router v6
+- **HTTP Client**: Axios
+
+## 🏗️ Backend Architecture 
+
+### Project Structure
+
+### Backend Project Structure
+
+```
+backend/src/main/java/com/gozzerks/taskflow/
+├── TaskflowApplication.java    # Spring Boot main application
+├── controllers/                # REST API endpoints
+│   ├── TaskController.java
+│   ├── TaskListController.java
+│   └── GlobalExceptionHandler.java
+├── services/                   # Business logic layer
+│   ├── TaskService.java        # Service interface
+│   ├── TaskListService.java    # Service interface
+│   └── impl/
+│       ├── TaskServiceImpl.java
+│       └── TaskListServiceImpl.java
+├── repositories/               # Data access layer (Spring Data JPA)
+│   ├── TaskRepository.java
+│   └── TaskListRepository.java
+├── domain/
+│   ├── entities/              # JPA entities
+│   │   ├── Task.java
+│   │   ├── TaskList.java
+│   │   ├── TaskStatus.java    # Enum: OPEN, CLOSED
+│   │   └── TaskPriority.java  # Enum: LOW, MEDIUM, HIGH
+│   └── dto/                   # Data Transfer Objects
+│       ├── TaskDTO.java
+│       ├── TaskListDTO.java
+│       └── ErrorResponse.java
+└── mappers/                   # Entity-DTO conversion
+├── TaskMapper.java        # Mapper interface
+├── TaskListMapper.java    # Mapper interface
+└── impl/
+├── TaskMapperImpl.java
+└── TaskListMapperImpl.java
+```
+
+### Frontend Project Structure
+
+
+```
+frontend/src/
+├── main.tsx                   # Application entry point
+├── App.tsx                    # Root component with routing
+├── App.css                    # Global styles
+├── index.css                  # Tailwind CSS imports
+├── AppProvider.tsx            # Global state management, API calls & useAppContext hook
+├── components/                # React components
+│   ├── TaskListsScreen.tsx    # Display all task lists
+│   ├── TasksScreen.tsx        # Display tasks in a list
+│   ├── CreateUpdateTaskListScreen.tsx  # Create/edit task lists
+│   └── CreateUpdateTaskScreen.tsx      # Create/edit tasks
+└── domain/                    # TypeScript types & interfaces
+    ├── Task.ts                # Task interface
+    ├── TaskList.ts            # TaskList interface
+    ├── TaskPriority.ts        # Enum: LOW, MEDIUM, HIGH
+    └── TaskStatus.ts          # Enum: OPEN, CLOSED
+```
+
+
+### Design Patterns & Best Practices Implemented
+
+**Repository Pattern**
+- Clean separation of data access logic
+- Spring Data JPA repositories with custom query methods
+
+**Service Layer Pattern**
+- Business logic encapsulation
+- Transaction management with `@Transactional`
+
+**DTO Pattern**
+- API response/request objects separate from domain entities
+- Custom mappers for entity-DTO conversion
+- Calculated fields (e.g., progress percentage) in DTOs
+
+**Exception Handling**
+- Centralized error handling with `@ControllerAdvice`
+- Custom exception types for different error scenarios
+- Meaningful HTTP status codes and error messages
+
+**Progress Calculation Logic**
+```java
+// Implemented in TaskListMapperImpl
+private Long calculateProgress(TaskList taskList) {
+    List<Task> tasks = taskList.getTasks();
+    if (tasks == null || tasks.isEmpty()) {
+        return 0L;
+    }
+    long completedTasks = tasks.stream()
+        .filter(task -> task.getStatus() == TaskStatus.COMPLETED)
+        .count();
+    return (completedTasks * 100) / tasks.size();
+}
+```
+
+## 📊 Database Schema & Relationships
+
+### TaskList Entity
+```java
+@Entity
+@Table(name = "task_list")
+public class TaskList {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private String name;
+    private String description;
+    
+    @OneToMany(mappedBy = "taskList", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks = new ArrayList<>();
+    
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+}
+```
+
+### Task Entity
+```java
+@Entity
+@Table(name = "task")
+public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private String title;
+    private String description;
+    
+    @Enumerated(EnumType.STRING)
+    private TaskPriority priority;
+    
+    @Enumerated(EnumType.STRING)
+    private TaskStatus status;
+    
+    @ManyToOne
+    @JoinColumn(name = "task_list_id", nullable = false)
+    private TaskList taskList;
+    
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+}
+```
+
+**Relationship**: One-to-Many (TaskList → Tasks) with cascade operations
+
+## 🔌 API Endpoints 
+
+### Task Lists
+```http
+GET    /task-lists              # Retrieve all task lists with progress
+GET    /task-lists/{id}         # Get specific task list with tasks
+POST   /task-lists              # Create new task list
+PUT    /task-lists/{id}         # Update task list details
+DELETE /task-lists/{id}         # Delete task list (cascades to tasks)
+```
+
+### Tasks (Nested Resource)
+```http
+GET    /task-lists/{task_list_id}/tasks          # Get all tasks in a list
+GET    /task-lists/{task_list_id}/tasks/{id}     # Get specific task
+POST   /task-lists/{task_list_id}/tasks          # Create new task
+PUT    /task-lists/{task_list_id}/tasks/{id}     # Update task
+DELETE /task-lists/{task_list_id}/tasks/{id}     # Delete task
+```
+
+### Example Request/Response
+
+**Create Task List:**
+
+Request:
+```
+POST /task-lists
+Content-Type: application/json
+```
+
+Request Body:
+```json
+{
+  "tittle": "Sprint 1 Tasks",
+  "description": "Tasks for the first sprint"
+}
+```
+
+Response (201 Created):
+```json
+{
+  "id": 1,
+  "title": "Sprint 1 Tasks",
+  "description": "Tasks for the first sprint",
+  "progress": 0,
+  "tasks": [],
+  "createdAt": "2024-01-15T10:30:00",
+  "updatedAt": "2024-01-15T10:30:00"
+}
+```
+
+**Create Task:**
+
+Request:
+```
+POST /task-lists/1/tasks
+Content-Type: application/json
+```
+
+Request Body:
+```json
+{
+  "title": "Implement user authentication",
+  "description": "Add JWT-based authentication",
+  "priority": "HIGH",
+  "status": "OPEN"
+}
+```
+
+Response (201 Created):
+```json
+{
+  "id": 1,
+  "title": "Implement user authentication",
+  "description": "Add JWT-based authentication",
+  "priority": "HIGH",
+  "status": "OPEN",
+  "taskListId": 1,
+  "createdAt": "2024-01-15T10:35:00",
+  "updatedAt": "2024-01-15T10:35:00"
+}
+```
+
+## 🚀 Getting Started
+
+### Pre-requisites
+- Java 17 or higher
+- Maven 3.8+
+- Docker & Docker Compose (for PostgreSQL)
+- Node.js 18+ and npm (for frontend)
+
+### Backend Setup
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/gozzerks/taskflow.git
+cd taskflow
+```
+
+2. **Start PostgreSQL with Docker Compose**
+```bash
 docker-compose up -d
+```
 
-Build and run the application:
+This starts PostgreSQL on `localhost:5432` with:
+- Database: `taskflow`
+- Username: `taskflow`
+- Password: `taskflow123`
 
-# Run backend
+3. **Build and run the backend**
+```bash
 cd backend
-./mvnw spring-boot:run
+mvn clean install
+mvn spring-boot:run
+```
 
-# In another terminal, run frontend
+Backend API will be available at `http://localhost:8080`
+
+### Testing the API
+
+You can test the API using curl, Postman, or any HTTP client:
+
+```bash
+# Get all task lists
+curl http://localhost:8080/api/task-lists
+
+# Create a new task list
+curl -X POST http://localhost:8080/api/task-lists \
+  -H "Content-Type: application/json" \
+  -d '{"title":"My Tasks","description":"Personal task list"}'
+```
+
+### Frontend Setup
+
+1. **Navigate to frontend directory**
+```bash
 cd frontend
+```
+
+2. **Install dependencies**
+```bash
 npm install
+```
+
+3. **Start development server**
+```bash
 npm run dev
+```
 
-Or with Docker:
+Frontend will start on `http://localhost:5173`
 
-docker-compose up -d --build
+### Running Backend Tests
 
-    Access the application:
-
-    Frontend: http://localhost:5173
-    API: http://localhost:8080
-    API Documentation: http://localhost:8080/swagger-ui/index.html
-    API Docs JSON: http://localhost:8080/v3/api-docs
-    Health Check: http://localhost:8080/actuator/health
-
-📁 Project Structure
-
-backend/
-├── src/main/java/com/gozzerks/tasks/
-│   ├── controllers/       # REST API endpoints
-│   ├── domain/
-│   │   ├── dto/          # Data Transfer Objects
-│   │   └── entities/     # JPA Entities
-│   ├── mappers/          # Entity ↔ DTO conversion
-│   ├── repositories/     # Database access interfaces
-│   ├── services/         # Business logic
-│   └── TasksApplication.java  # Main application class
-└── pom.xml               # Maven configuration
-
-frontend/
-├── src/
-│   ├── components/       # React components
-│   ├── domain/           # Domain models
-│   ├── services/         # API service calls
-│   ├── AppProvider.tsx   # Global state management
-│   ├── App.tsx           # Main application component
-│   └── main.tsx          # Application entry point
-├── index.html            # HTML entry point
-└── package.json          # npm configuration
-
-🧪 Testing
-
-Run backend unit and integration tests:
-
+```bash
 cd backend
-./mvnw test
+mvn test
+```
 
-Run backend integration tests with Testcontainers (requires Docker):
+Tests use H2 in-memory database for isolation and speed.
 
-cd backend
-./mvnw verify
+
+## 🎯 Technical Skills Demonstrated
+
+### Backend
+✅ **Spring Boot Application Development**
+- Dependency injection and IoC container
+- Spring MVC for REST controllers
+- Spring Data JPA for persistence
+
+✅ **RESTful API Design**
+- Proper HTTP methods and status codes
+- Resource-based URLs
+- Nested resource handling
+
+✅ **Database Management**
+- PostgreSQL for production
+- H2 for testing
+- JPA entity relationships
+- Database migrations with Hibernate
+
+✅ **Code Organization**
+- Layered architecture (Controller → Service → Repository)
+- Separation of concerns
+- DTO pattern for API contracts
+
+✅ **Error Handling**
+- Global exception handling
+- Custom error responses
+- Input validation
+
+✅ **Build & Deployment**
+- Maven project management
+- Docker containerization
+- Environment configuration
+
+### Frontend (Functional Interface)
+- Basic React component structure
+- TypeScript type definitions
+- REST API integration with Axios
+- NextUI component usage
+
+## 📚 Learning Resources Used
+
+- Spring Boot Official Documentation
+- Baeldung Spring Tutorials
+- Youtube Tutorials [Devtiro, Amigoscode]
+- Spring Data JPA Documentation
+
+## 💡 Why This Project?
+
+This project allowed me to:
+1. **Strengthen Spring Boot fundamentals** - dependency injection, Spring MVC, Spring Data JPA
+2. **Implement REST API best practices** - proper endpoint design, HTTP methods, status codes
+3. **Work with relational databases** - entity relationships, transactions, query optimization
+4. **Apply design patterns** - Repository, Service Layer, DTO patterns
+5. **Handle real-world scenarios** - error handling, validation, data mapping
