@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.gozzerks</groupId>
-    <artifactId>tasks</artifactId>
+    <artifactId>taskflow</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>tasks</name>
+    <name>TaskFlow</name>
     <description>A task tracking app</description>
     <url/>
     <licenses>

@@ -15,5 +15,7 @@ services:
     # CAUTION - DO NOT store plaintext passwords in source control. We
     #           are doing so here as this is a builder.
     environment:
-      POSTGRES_PASSWORD: changemeinprod!
+      POSTGRES_USER: taskflow
+      POSTGRES_PASSWORD: taskflow123
+      POSTGRES_DB: taskflow
 
