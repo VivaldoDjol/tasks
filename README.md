@@ -330,6 +330,35 @@ curl -X POST http://localhost:8080/api/task-lists \
   -d '{"title":"My Tasks","description":"Personal task list"}'
 ```
 
+## 🧪 Testing & Quality Assurance
+
+### Controller Integration Tests ✅
+
+Comprehensive REST API testing using **MockMvc**, **Mockito**, and **AAA pattern** (Arrange-Act-Assert):
+
+**TaskListControllerTest.java** (17 tests):
+- ✅ List operations (all lists, empty list scenarios)
+- ✅ Get single task list (success and 404 cases)
+- ✅ Create task list with validation (title required, blank detection, max length)
+- ✅ Update task list (success, validation errors, 404 handling)
+- ✅ Delete task list (success, 404 handling, cascade delete verification)
+- ✅ Error handling (malformed JSON, invalid UUID format)
+
+**TaskControllerTest.java** (10+ tests):
+- ✅ List tasks within task list (populated and empty)
+- ✅ Get single task (success and 404 cases)
+- ✅ Create task with nested routing validation
+- ✅ Update task status and priority
+- ✅ Delete task operations
+- ✅ Task list relationship validation
+
+### Test Coverage
+```bash
+# Run all controller tests
+cd backend
+mvn test
+```
+
 ### Frontend Setup
 
 1. **Navigate to frontend directory**
