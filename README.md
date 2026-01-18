@@ -56,6 +56,7 @@ TaskFlow is a task management application that enables users to organize their w
 ### Backend Project Structure
 
 ```
+# Main Directory
 backend/src/main/java/com/gozzerks/taskflow/
 ├── TaskflowApplication.java    # Spring Boot main application
 ├── controllers/                # REST API endpoints
@@ -87,6 +88,14 @@ backend/src/main/java/com/gozzerks/taskflow/
 └── impl/
 ├── TaskMapperImpl.java
 └── TaskListMapperImpl.java
+
+# Test Directory
+backend/src/test/java/com/gozzerks/taskflow/
+├── controllers/               # REST API integration tests
+│   ├── TaskControllerTest.java
+│   └── TaskListControllerTest.java
+└── repositories/              # Data layer tests
+    └── TaskRepositoryTest.java
 ```
 
 ### Frontend Project Structure
