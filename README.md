@@ -1,4 +1,4 @@
-# TaskFlow - Full-Stack Task Management Application
+# TaskFlow - Task Management Application with Spring Boot Backend
 
 A task management application showcasing backend development expertise with Spring Boot, built as part of my continuous learning journey.
 
@@ -7,7 +7,7 @@ A task management application showcasing backend development expertise with Spri
 This project demonstrates my **backend development skills** with Spring Boot, Java, and RESTful API design. The backend was developed by following best practices tutorials and implementing core features independently. The frontend serves as a functional interface to demonstrate the API capabilities, though my primary expertise lies in backend development.
 
 **Current Focus**: Backend architecture, API design, database modeling, and server-side logic  
-**Learning Goals**: Expanding frontend proficiency with React and TypeScript
+**Learning Goals**: Understanding client-side integration to design more robust and developer-friendly backend APIs
 
 ## 🚀 Project Overview
 
