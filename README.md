@@ -332,9 +332,9 @@ curl -X POST http://localhost:8080/api/task-lists \
 
 ## 🧪 Testing & Quality Assurance
 
-### Controller Integration Tests ✅
+### Controller Tests ✅
 
-Comprehensive REST API testing using **MockMvc**, **Mockito**, and **AAA pattern** (Arrange-Act-Assert):
+REST API testing using **MockMvc**, **Mockito**, and **AAA pattern** (Arrange-Act-Assert):
 
 **TaskListControllerTest.java** (17 tests):
 - ✅ List operations (all lists, empty list scenarios)
@@ -352,11 +352,29 @@ Comprehensive REST API testing using **MockMvc**, **Mockito**, and **AAA pattern
 - ✅ Delete task operations
 - ✅ Task list relationship validation
 
+### Repository Tests ✅
+
+Data layer testing using **@DataJpaTest** with **H2 in-memory database**:
+
+**TaskRepositoryTest.java** (15+ tests):
+- ✅ Custom query methods (`findByTaskListId`, `findByTaskListIdAndId`)
+- ✅ Cascade delete operations
+- ✅ Entity relationship integrity
+- ✅ Empty result handling
+- ✅ Task-TaskList bidirectional relationship
+- ✅ Transactional behavior verification
+
+
 ### Test Coverage
 ```bash
 # Run all controller tests
 cd backend
 mvn test
+
+# Run specific test class
+mvn test -Dtest=TaskControllerTest
+mvn test -Dtest=TaskListControllerTest
+mvn test -Dtest=TaskRepositoryTest
 ```
 
 ### Frontend Setup
