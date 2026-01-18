@@ -2,19 +2,19 @@
 
 A task management application showcasing backend development expertise with Spring Boot, built as part of my continuous learning journey.
 
-## 🎓 Project Context
+## Project Context
 
 This project demonstrates my **backend development skills** with Spring Boot, Java, and RESTful API design. The backend was developed by following best practices tutorials and implementing core features independently. The frontend serves as a functional interface to demonstrate the API capabilities, though my primary expertise lies in backend development.
 
 **Current Focus**: Backend architecture, API design, database modeling, and server-side logic  
 **Learning Goals**: Understanding client-side integration to design more robust and developer-friendly backend APIs
 
-## 🚀 Project Overview
+## Project Overview
 
 TaskFlow is a task management application that enables users to organize their work through task lists and individual tasks. The application features a Spring Boot backend with PostgreSQL persistence and a React frontend interface.
 
 
-## ✨ Key Features (Backend Implementation)
+## Key Features (Backend Implementation)
 
 ### 🎯 Core Backend Features
 - **RESTful API Design**: Fully functional REST endpoints following industry standards
@@ -30,7 +30,7 @@ TaskFlow is a task management application that enables users to organize their w
 - Progress visualization with NextUI components
 - Responsive design with Tailwind CSS
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Backend (Primary Focus)
 - **Framework**: Spring Boot 3.5.6
@@ -49,7 +49,7 @@ TaskFlow is a task management application that enables users to organize their w
 - **Routing**: React Router v6
 - **HTTP Client**: Axios
 
-## 🏗️ Backend Architecture 
+## Backend Architecture 
 
 ### Project Structure
 
@@ -156,7 +156,7 @@ private Long calculateProgress(TaskList taskList) {
 }
 ```
 
-## 📊 Database Schema & Relationships
+## Database Schema & Relationships
 
 ### TaskList Entity
 ```java
@@ -207,7 +207,7 @@ public class Task {
 
 **Relationship**: One-to-Many (TaskList → Tasks) with cascade operations
 
-## 🔌 API Endpoints 
+## API Endpoints 
 
 ### Task Lists
 ```http
@@ -290,7 +290,7 @@ Response (201 Created):
 }
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Pre-requisites
 - Java 17 or higher
@@ -339,7 +339,7 @@ curl -X POST http://localhost:8080/api/task-lists \
   -d '{"title":"My Tasks","description":"Personal task list"}'
 ```
 
-## 🧪 Testing & Quality Assurance
+## Testing & Quality Assurance
 
 ### Controller Tests ✅
 
@@ -415,7 +415,7 @@ mvn test
 Tests use H2 in-memory database for isolation and speed.
 
 
-## 🎯 Technical Skills Demonstrated
+## Technical Skills Demonstrated
 
 ### Backend
 ✅ **Spring Boot Application Development**
@@ -455,14 +455,14 @@ Tests use H2 in-memory database for isolation and speed.
 - REST API integration with Axios
 - NextUI component usage
 
-## 📚 Learning Resources Used
+## Learning Resources Used
 
 - Spring Boot Official Documentation
 - Baeldung Spring Tutorials
 - Youtube Tutorials [Devtiro, Amigoscode]
 - Spring Data JPA Documentation
 
-## 💡 Why This Project?
+## Why This Project?
 
 This project allowed me to:
 1. **Strengthen Spring Boot fundamentals** - dependency injection, Spring MVC, Spring Data JPA
