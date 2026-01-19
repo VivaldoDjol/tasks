@@ -67,8 +67,8 @@ backend/src/main/java/com/gozzerks/taskflow/
 │   ├── TaskService.java        # Service interface
 │   ├── TaskListService.java    # Service interface
 │   └── impl/
-│       ├── TaskServiceImpl.java
-│       └── TaskListServiceImpl.java
+│       ├── TaskServiceImpl.java      # Implementation of task business logic
+│       └── TaskListServiceImpl.java  # Implementation of task list business logic
 ├── repositories/               # Data access layer (Spring Data JPA)
 │   ├── TaskRepository.java
 │   └── TaskListRepository.java
@@ -94,8 +94,12 @@ backend/src/test/java/com/gozzerks/taskflow/
 ├── controllers/               # REST API integration tests
 │   ├── TaskControllerTest.java
 │   └── TaskListControllerTest.java
-└── repositories/              # Data layer tests
-    └── TaskRepositoryTest.java
+├── repositories/              # Data layer tests
+│   └── TaskRepositoryTest.java
+└── services/impl/             # Service layer implementation tests
+    ├── TaskListServiceImplTest.java
+    └── TaskServiceImplTest.java
+
 ```
 
 ### Frontend Project Structure
@@ -345,7 +349,7 @@ curl -X POST http://localhost:8080/api/task-lists \
 
 REST API testing using **MockMvc**, **Mockito**, and **AAA pattern** (Arrange-Act-Assert):
 
-**TaskListControllerTest.java** (17 tests):
+**TaskListControllerTest.java** (15+ tests):
 - ✅ List operations (all lists, empty list scenarios)
 - ✅ Get single task list (success and 404 cases)
 - ✅ Create task list with validation (title required, blank detection, max length)
@@ -373,6 +377,22 @@ Data layer testing using **@DataJpaTest** with **H2 in-memory database**:
 - ✅ Task-TaskList bidirectional relationship
 - ✅ Transactional behavior verification
 
+### Service Tests ✅
+
+Business logic testing using **JUnit 5**, **Mockito**, and **AssertJ**:
+
+**TaskListServiceImplTest.java** (20+ tests):
+- ✅ Find all operations (multiple lists, empty results)
+- ✅ Get task list (existing ID, non-existent ID, null handling)
+- ✅ Create task list (successful creation, timestamp setting, validation)
+- ✅ Update task list (successful update, timestamp updates, non-existent ID)
+- ✅ Delete task list (successful deletion, non-existent ID, cascade verification)
+
+**TaskServiceImplTest.java** (20+ tests):
+- ✅ Task creation (with valid list, relationship setup, validation)
+- ✅ Task retrieval (by list ID, by ID, empty results)
+- ✅ Task updates (field updates, relationship preservation, validation)
+- ✅ Task deletion (successful, non-existent, exception handling)
 
 ### Test Coverage
 ```bash
@@ -384,6 +404,8 @@ mvn test
 mvn test -Dtest=TaskControllerTest
 mvn test -Dtest=TaskListControllerTest
 mvn test -Dtest=TaskRepositoryTest
+mvn test -Dtest=TaskListServiceImplTest
+mvn test -Dtest=TaskServiceImplTest
 ```
 
 ### Frontend Setup
